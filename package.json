@@ -1,6 +1,6 @@
 {
   "name": "serverless-plugin-write-env-vars",
-  "version": "0.9.0",
+  "version": "1.0.0",
   "description": "Plugin for the SLS 1.x branch that writes a file for dotenv usage.",
   "main": "src/index.js",
   "scripts": {
