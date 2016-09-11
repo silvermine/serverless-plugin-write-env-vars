@@ -1,9 +1,11 @@
 'use strict';
 
-var expect = require('expect.js'),
+var _ = require('underscore'),
+    expect = require('expect.js'),
     sinon = require('sinon'),
     path = require('path'),
-    Plugin = require('../index.js');
+    rewire = require('rewire'),
+    Plugin = rewire('../index.js');
 
 describe('serverless-plugin-write-env-vars', function() {
 
@@ -56,12 +58,75 @@ describe('serverless-plugin-write-env-vars', function() {
 
 
    describe('writeEnvironmentFile', function() {
-      // TODO: write tests
+
+      it('formats the output correctly and writes it to the correct place', function() {
+         var filePath = path.join('/tmp/foo', '.env'),
+             vars = { FOO: 'bar', TEST123: 'xyz' },
+             content = 'FOO=bar\nTEST123=xyz',
+             fsStub = { writeFile: _.noop },
+             mock = sinon.mock(fsStub),
+             sls, plugin, revert;
+
+         mock.expects('writeFile').once().withArgs(filePath, content).callsArg(2);
+         revert = Plugin.__set__('fs', fsStub);
+
+         sls = {
+            config: { servicePath: '/tmp/foo' },
+            service: { custom: { writeEnvVars: vars } },
+            cli: { log: _.noop },
+         };
+
+         plugin = new Plugin(sls);
+
+         return plugin.writeEnvironmentFile()
+            .then(function() {
+               mock.verify();
+               revert();
+            });
+      });
+
    });
 
 
    describe('deleteEnvironmentFile', function() {
-      // TODO: write tests
+
+      function runTest(exists) {
+         var filePath = path.join('/tmp/foo', '.env'),
+             fsStub = { stat: _.noop, unlink: _.noop },
+             mock = sinon.mock(fsStub),
+             sls, plugin, revert;
+
+         if (exists) {
+            mock.expects('stat').once().withArgs(filePath).callsArg(1);
+            mock.expects('unlink').once().withArgs(filePath).callsArg(1);
+         } else {
+            mock.expects('stat').once().withArgs(filePath).throws();
+         }
+
+         revert = Plugin.__set__('fs', fsStub);
+
+         sls = {
+            config: { servicePath: '/tmp/foo' },
+            cli: { log: _.noop },
+         };
+
+         plugin = new Plugin(sls);
+
+         return plugin.deleteEnvironmentFile()
+            .then(function() {
+               mock.verify();
+               revert();
+            });
+      }
+
+      it('invokes the proper functions - when file exists', function() {
+         runTest(true);
+      });
+
+      it('invokes the proper functions - when file does not exist', function() {
+         runTest(false);
+      });
+
    });
 
 });

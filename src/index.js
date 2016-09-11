@@ -32,7 +32,7 @@ module.exports = Class.extend({
          return memo + key + '=' + val + '\n';
       }, '');
 
-      return Q.ninvoke(fs, 'writeFile', filePath, str)
+      return Q.ninvoke(fs, 'writeFile', filePath, str.trim())
          .then(function() {
             this._serverless.cli.log('Wrote .env file to ' + filePath);
          }.bind(this));
