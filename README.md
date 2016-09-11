@@ -12,9 +12,8 @@ This is a plugin for the Serverless framework (1.x branch, prior to 1.0.0
 final) that writes environment variables out to a file that is compatible with
 [dotenv](https://www.npmjs.com/package/dotenv).
 
-Likely once [Serverless
-#1455](https://github.com/serverless/serverless/issues/1455) is finished, we
-will no longer need this plugin.
+Likely once [Serverless #1455](https://github.com/serverless/serverless/issues/1455)
+is finished, we will no longer need this plugin.
 
 ## How do I use it?
 
