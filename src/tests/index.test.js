@@ -45,7 +45,10 @@ describe('serverless-plugin-write-env-vars', function() {
       testHookRegistration('after:deploy:createDeploymentArtifacts', 'deleteEnvironmentFile');
 
       it('registers before:offline:start that calls writeEnvironmentFile when configured to do so', function() {
-         var sls, plugin;
+         var sls, plugin,
+             spy = sinon.spy(),
+             functions = {},
+             ExtPlugin, hook, fn;
 
          sls = {
             service: { custom: { writeEnvVarsOffline: true } },
@@ -55,7 +58,19 @@ describe('serverless-plugin-write-env-vars', function() {
          plugin = new Plugin(sls);
 
          expect(plugin.hooks['before:offline:start']).to.be.a('function');
-         expect(plugin.hooks['before:offline:start'].name).to.be('bound writeEnvironmentFile');
+
+         // inlining testHookRegistration to pass it our serverless 'instance' with the config option enabled
+         hook = 'before:offline:start';
+         fn = 'writeEnvironmentFile';
+
+         functions[fn] = spy;
+         ExtPlugin = Plugin.extend(functions);
+
+         plugin = new ExtPlugin(sls);
+         plugin.hooks[hook]();
+
+         expect(spy.called).to.be.ok();
+         expect(spy.calledOn(plugin));
       });
 
    });
