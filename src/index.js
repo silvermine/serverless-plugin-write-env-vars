@@ -17,6 +17,8 @@ module.exports = Class.extend({
          'after:deploy:function:deploy': this.deleteEnvironmentFile.bind(this),
          'before:deploy:createDeploymentArtifacts': this.writeEnvironmentFile.bind(this),
          'after:deploy:createDeploymentArtifacts': this.deleteEnvironmentFile.bind(this),
+         'before:invoke:local:invoke': this.writeEnvironmentFile.bind(this),
+         'after:invoke:local:invoke': this.deleteEnvironmentFile.bind(this),
       };
    },
 
