@@ -52,6 +52,22 @@ That's all! Fill those variables up with any keys and values you want!
 values, so you should make sure they are simple strings that do not have line
 breaks or other characters that would need to be escaped.
 
+## Compatibility with other plugins
+
+### [`serverless-offline`](https://github.com/dherault/serverless-offline) 
+
+Add both plugins to your `serverless.yml` file:
+
+```yaml
+plugins:
+  - serverless-plugin-write-env-vars
+  - serverless-offline
+```
+
+Make sure that `serverless-plugin-write-env-vars` is above `serverless-offline` so it will be loaded earlier.
+
+Now your vars will be automatically written to `.env` before running `serverless offline`.
+
 ## How do I contribute?
 
 Easy! Pull requests are welcome! Just do the following:
