@@ -44,14 +44,13 @@ describe('serverless-plugin-write-env-vars', function() {
       testHookRegistration('before:deploy:createDeploymentArtifacts', 'writeEnvironmentFile');
       testHookRegistration('after:deploy:createDeploymentArtifacts', 'deleteEnvironmentFile');
 
-      it('registers before:offline:start that calls writeEnvironmentFile when configured to do so', function() {
+      it('registers before:offline:start that calls writeEnvironmentFile', function() {
          var sls, plugin,
              spy = sinon.spy(),
              functions = {},
              ExtPlugin, hook, fn;
 
          sls = {
-            service: { custom: { writeEnvVarsOffline: true } },
             cli: { log: _.noop },
          };
 

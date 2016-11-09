@@ -17,11 +17,8 @@ module.exports = Class.extend({
          'after:deploy:function:deploy': this.deleteEnvironmentFile.bind(this),
          'before:deploy:createDeploymentArtifacts': this.writeEnvironmentFile.bind(this),
          'after:deploy:createDeploymentArtifacts': this.deleteEnvironmentFile.bind(this),
+         'before:offline:start': this.writeEnvironmentFile.bind(this),
       };
-
-      if (this._serverless && this._serverless.service && this._serverless.service.custom.writeEnvVarsOffline) {
-         this.hooks['before:offline:start'] = this.writeEnvironmentFile.bind(this);
-      }
    },
 
    getEnvFilePath: function() {
