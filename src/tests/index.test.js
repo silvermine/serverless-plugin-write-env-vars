@@ -18,7 +18,7 @@ describe('serverless-plugin-write-env-vars', function() {
          expect(plugin.hooks['after:deploy:function:deploy']).to.be.a('function');
          expect(plugin.hooks['before:deploy:createDeploymentArtifacts']).to.be.a('function');
          expect(plugin.hooks['after:deploy:createDeploymentArtifacts']).to.be.a('function');
-         expect(plugin.hooks['before:offline:start']).to.be(undefined);
+         expect(plugin.hooks['before:offline:start']).to.be.a('function');
       });
 
 
