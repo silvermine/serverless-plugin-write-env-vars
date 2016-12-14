@@ -14,10 +14,10 @@ describe('serverless-plugin-write-env-vars', function() {
       it('registers the appropriate hook', function() {
          var plugin = new Plugin();
 
-         expect(plugin.hooks['before:deploy:function:deploy']).to.be.a('function');
-         expect(plugin.hooks['after:deploy:function:deploy']).to.be.a('function');
-         expect(plugin.hooks['before:deploy:createDeploymentArtifacts']).to.be.a('function');
-         expect(plugin.hooks['after:deploy:createDeploymentArtifacts']).to.be.a('function');
+         expect(plugin.hooks['before:deploy:function:packageFunction']).to.be.a('function');
+         expect(plugin.hooks['after:deploy:function:packageFunction']).to.be.a('function');
+         expect(plugin.hooks['before:package:createDeploymentArtifacts']).to.be.a('function');
+         expect(plugin.hooks['after:package:createDeploymentArtifacts']).to.be.a('function');
          expect(plugin.hooks['before:invoke:local:invoke']).to.be.a('function');
          expect(plugin.hooks['after:invoke:local:invoke']).to.be.a('function');
       });
@@ -40,10 +40,10 @@ describe('serverless-plugin-write-env-vars', function() {
          });
       }
 
-      testHookRegistration('before:deploy:function:deploy', 'writeEnvironmentFile');
-      testHookRegistration('after:deploy:function:deploy', 'deleteEnvironmentFile');
-      testHookRegistration('before:deploy:createDeploymentArtifacts', 'writeEnvironmentFile');
-      testHookRegistration('after:deploy:createDeploymentArtifacts', 'deleteEnvironmentFile');
+      testHookRegistration('before:deploy:function:packageFunction', 'writeEnvironmentFile');
+      testHookRegistration('after:deploy:function:packageFunction', 'deleteEnvironmentFile');
+      testHookRegistration('before:package:createDeploymentArtifacts', 'writeEnvironmentFile');
+      testHookRegistration('after:package:createDeploymentArtifacts', 'deleteEnvironmentFile');
       testHookRegistration('before:invoke:local:invoke', 'writeEnvironmentFile');
       testHookRegistration('after:invoke:local:invoke', 'deleteEnvironmentFile');
 

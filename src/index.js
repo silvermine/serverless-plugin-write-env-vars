@@ -13,10 +13,10 @@ module.exports = Class.extend({
       this._opts = opts;
 
       this.hooks = {
-         'before:deploy:function:deploy': this.writeEnvironmentFile.bind(this),
-         'after:deploy:function:deploy': this.deleteEnvironmentFile.bind(this),
-         'before:deploy:createDeploymentArtifacts': this.writeEnvironmentFile.bind(this),
-         'after:deploy:createDeploymentArtifacts': this.deleteEnvironmentFile.bind(this),
+         'before:deploy:function:packageFunction': this.writeEnvironmentFile.bind(this),
+         'after:deploy:function:packageFunction': this.deleteEnvironmentFile.bind(this),
+         'before:package:createDeploymentArtifacts': this.writeEnvironmentFile.bind(this),
+         'after:package:createDeploymentArtifacts': this.deleteEnvironmentFile.bind(this),
          'before:invoke:local:invoke': this.writeEnvironmentFile.bind(this),
          'after:invoke:local:invoke': this.deleteEnvironmentFile.bind(this),
       };
