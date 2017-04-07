@@ -31,7 +31,7 @@
   "devDependencies": {
     "coveralls": "2.11.12",
     "eslint": "3.3.1",
-    "eslint-config-silvermine": "1.0.0",
+    "eslint-config-silvermine": "1.1.2",
     "expect.js": "0.3.1",
     "grunt": "1.0.1",
     "grunt-eslint": "19.0.0",
