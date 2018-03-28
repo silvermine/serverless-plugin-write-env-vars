@@ -21,6 +21,7 @@ module.exports = Class.extend({
 
       if (this._serverless && this._serverless.service && this._serverless.service.custom.writeEnvVarsOffline) {
          this.hooks['before:offline:start'] = this.writeEnvironmentFile.bind(this);
+         this.hooks['before:offline:start:init'] = this.writeEnvironmentFile.bind(this);
       }
    },
 
