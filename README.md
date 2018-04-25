@@ -24,7 +24,7 @@ and bundled into the root of your code bundle. Then you can rely on the
 make those variables accessible to your running Lambda functions.
 
 This makes it simple to take advantage of the powerful [variables
-capabilities](https://github.com/serverless/serverless/blob/master/docs/01-guide/08-serverless-variables.md)
+capabilities](https://serverless.com/framework/docs/providers/aws/guide/variables)
 that are built into Serverless.
 
 For example:
