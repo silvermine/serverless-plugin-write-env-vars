@@ -18,6 +18,8 @@ describe('serverless-plugin-write-env-vars', function() {
          expect(plugin.hooks['after:deploy:function:deploy']).to.be.a('function');
          expect(plugin.hooks['before:deploy:createDeploymentArtifacts']).to.be.a('function');
          expect(plugin.hooks['after:deploy:createDeploymentArtifacts']).to.be.a('function');
+         expect(plugin.hooks['before:invoke:local:invoke']).to.be.a('function');
+         expect(plugin.hooks['after:invoke:local:invoke']).to.be.a('function');
       });
 
 
@@ -42,6 +44,8 @@ describe('serverless-plugin-write-env-vars', function() {
       testHookRegistration('after:deploy:function:deploy', 'deleteEnvironmentFile');
       testHookRegistration('before:deploy:createDeploymentArtifacts', 'writeEnvironmentFile');
       testHookRegistration('after:deploy:createDeploymentArtifacts', 'deleteEnvironmentFile');
+      testHookRegistration('before:invoke:local:invoke', 'writeEnvironmentFile');
+      testHookRegistration('after:invoke:local:invoke', 'deleteEnvironmentFile');
 
    });
 
