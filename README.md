@@ -1,3 +1,10 @@
+# WARNING: DEPRECATED PLUGIN
+
+Serverless now has built-in support for [environment variables][sls-env-vars]. As such,
+this plugin is deprecated and no longer maintained.
+
+[sls-env-vars]: https://serverless.com/framework/docs/providers/aws/guide/functions/#environment-variables
+
 # Serverless Plugin: Write Env Vars
 
 [![Build Status](https://travis-ci.org/silvermine/serverless-plugin-write-env-vars.png?branch=master)](https://travis-ci.org/silvermine/serverless-plugin-write-env-vars)
